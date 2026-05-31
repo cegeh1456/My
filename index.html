@@ -52,23 +52,18 @@
     <div class="gallery-grid" id="galleryGrid">
       <div class="gallery-item span2" id="gItem0">
         <div class="gallery-placeholder"><span class="ph-icon">🖼</span><span class="ph-text">klik untuk upload foto utama</span></div>
-        <input type="file" accept="image/*" onchange="uploadImage(this, 0)">
       </div>
       <div class="gallery-item" id="gItem1">
         <div class="gallery-placeholder"><span class="ph-icon">📷</span><span class="ph-text">foto 2</span></div>
-        <input type="file" accept="image/*" onchange="uploadImage(this, 1)">
       </div>
       <div class="gallery-item" id="gItem2">
         <div class="gallery-placeholder"><span class="ph-icon">📷</span><span class="ph-text">foto 3</span></div>
-        <input type="file" accept="image/*" onchange="uploadImage(this, 2)">
       </div>
       <div class="gallery-item" id="gItem3">
         <div class="gallery-placeholder"><span class="ph-icon">📷</span><span class="ph-text">foto 4</span></div>
-        <input type="file" accept="image/*" onchange="uploadImage(this, 3)">
       </div>
       <div class="gallery-item" id="gItem4">
         <div class="gallery-placeholder"><span class="ph-icon">📷</span><span class="ph-text">foto 5</span></div>
-        <input type="file" accept="image/*" onchange="uploadImage(this, 4)">
       </div>
     </div>
   </div>
@@ -84,11 +79,6 @@
         <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
       </div>
     </div>
-    <label class="music-upload-label">
-      <span>🎵</span><span>Upload lagu (MP3 / M4A / WAV)</span>
-      <input type="file" accept="audio/*" onchange="uploadMusic(this)">
-    </label>
-    <p class="music-hint">Pilih lagu favorit kalian berdua ✦</p>
   </div>
 
   <div class="bottom-ornament anim-7">🤍 ✦ 🤍</div>
@@ -109,7 +99,6 @@
     <label class="modal-label">Pesan Cinta</label>
     <textarea class="modal-textarea" id="inputMessage"></textarea>
     <div class="modal-actions">
-      <button class="btn-cancel" onclick="closeModal()">Batal</button>
       <button class="btn-save" onclick="saveEdits()">
         <span id="saveLabel">Simpan ✦</span>
       </button>
