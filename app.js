@@ -84,9 +84,10 @@ async function saveEdits() {
 
   document.getElementById('saveLabel').textContent = 'Menyimpan...';
 
-  const { error } = await supabaseClient
-    .from(TABLE_NAME)
-    .upsert({ id: 1, name, message: htmlMsg }, { onConflict: 'id' });
+const { error } = await supabaseClient
+  .from(TABLE_NAME)
+  .update({ name, message: htmlMsg })
+  .eq('id', 1);
 
   if (error) {
     showToast('Gagal menyimpan. Cek koneksi & konfigurasi Supabase.', true);
@@ -138,9 +139,17 @@ async function uploadImage(input, idx) {
   const photos = row?.photos || Array(5).fill(null);
   photos[idx]  = publicUrl;
 
-  await supabaseClient
-    .from(TABLE_NAME)
-    .upsert({ id: 1, photos }, { onConflict: 'id' });
+const { error: dbError } = await supabaseClient
+  .from(TABLE_NAME)
+  .update({ photos })
+  .eq('id', 1);
+
+if (dbError) {
+  hideUploadOverlay();
+  showToast('Foto terupload, tapi gagal disimpan ke database.', true);
+  console.error(dbError);
+  return;
+}
 
   setImageInSlot(idx, publicUrl);
   hideUploadOverlay();
@@ -189,9 +198,17 @@ async function uploadMusic(input) {
 
   const publicUrl = urlData.publicUrl;
 
-  await supabaseClient
-    .from(TABLE_NAME)
-    .upsert({ id: 1, music_url: publicUrl, music_name: songName }, { onConflict: 'id' });
+const { error: dbError } = await supabaseClient
+  .from(TABLE_NAME)
+  .update({ music_url: publicUrl, music_name: songName })
+  .eq('id', 1);
+
+if (dbError) {
+  hideUploadOverlay();
+  showToast('Lagu terupload, tapi gagal disimpan ke database.', true);
+  console.error(dbError);
+  return;
+}
 
   loadAudioFromUrl(publicUrl, songName);
   hideUploadOverlay();
