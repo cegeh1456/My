@@ -3,7 +3,7 @@
 //  Isi dengan kredensial Supabase kamu di sini
 // =====================================================
 
-const SUPABASE_URL = 'zokhradghyebmfdwnixq';
+const SUPABASE_URL = 'https://zokhradghyebmfdwnixq.supabase.co/rest/v1/';
 // Contoh: 'https://abcdefghij.supabase.co'
 
 const SUPABASE_ANON_KEY = 'GANTI_DENGAN_SUPABASE_ANON_KEY_KAMU';
