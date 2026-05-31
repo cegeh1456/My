@@ -3,7 +3,7 @@
 //  Isi dengan kredensial Supabase kamu di sini
 // =====================================================
 
-const SUPABASE_URL = 'https://zokhradghyebmfdwnixq.supabase.co/rest/v1/';
+const SUPABASE_URL = 'https://zokhradghyebmfdwnixq.supabase.co';
 // Contoh: 'https://abcdefghij.supabase.co'
 
 const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inpva2hyYWRnaHllYm1mZHduaXhxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODAxOTI2ODIsImV4cCI6MjA5NTc2ODY4Mn0.XINihEzuFRySmB_ZUwd1s4_wZu-pCe8zCAteXxZESpI';
