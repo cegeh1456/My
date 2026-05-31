@@ -1,0 +1,240 @@
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  min-height: 100vh;
+  background: #0d0810;
+  font-family: 'Cormorant Garamond', serif;
+  color: #f5e6d8;
+  overflow-x: hidden;
+}
+
+/* ── Stars ── */
+.stars-bg { position: fixed; inset: 0; pointer-events: none; z-index: 0; }
+.star {
+  position: absolute; background: #fff; border-radius: 50%;
+  animation: twinkle var(--dur, 3s) ease-in-out infinite var(--delay, 0s);
+}
+@keyframes twinkle {
+  0%, 100% { opacity: .2; transform: scale(1); }
+  50%       { opacity: 1;  transform: scale(1.4); }
+}
+
+/* ── Petals ── */
+.petals-bg { position: fixed; inset: 0; pointer-events: none; z-index: 1; overflow: hidden; }
+.petal { position: absolute; top: -30px; opacity: .5; animation: fall linear infinite; }
+@keyframes fall {
+  0%   { transform: translateY(-30px) rotate(0deg);   opacity: .5; }
+  100% { transform: translateY(110vh) rotate(360deg); opacity: 0;  }
+}
+
+/* ── Loading overlay ── */
+.loading-overlay {
+  position: fixed; inset: 0; background: #0d0810;
+  z-index: 999; display: flex; flex-direction: column;
+  align-items: center; justify-content: center; gap: 20px;
+}
+.loading-spinner {
+  width: 40px; height: 40px; border-radius: 50%;
+  border: 2px solid rgba(200,150,90,.2);
+  border-top-color: #c8965a;
+  animation: spin 0.9s linear infinite;
+}
+.loading-text {
+  font-size: 14px; font-style: italic; color: rgba(200,150,90,.6);
+  letter-spacing: 2px;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* ── Page ── */
+.page {
+  position: relative; z-index: 2;
+  min-height: 100vh;
+  display: flex; flex-direction: column; align-items: center;
+  padding: 60px 24px 100px;
+  max-width: 700px; margin: 0 auto;
+}
+
+/* ── Animations ── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.anim-1 { animation: fadeUp 1.2s ease both; }
+.anim-2 { animation: fadeUp 1.4s ease both; }
+.anim-3 { animation: fadeUp 1.5s ease both; }
+.anim-4 { animation: fadeUp 1.6s ease both; }
+.anim-5 { animation: fadeUp 1.7s ease both; }
+.anim-6 { animation: fadeUp 1.8s ease both; }
+.anim-7 { animation: fadeUp 2.0s ease both; }
+
+.top-ornament { font-size: 28px; letter-spacing: 12px; color: #c8965a; margin-bottom: 28px; }
+
+/* ── Title ── */
+.title-block { text-align: center; margin-bottom: 36px; }
+.subtitle-label {
+  font-family: 'Cinzel', serif; font-size: 11px; letter-spacing: 5px;
+  color: #c8965a; text-transform: uppercase; margin-bottom: 16px; display: block;
+}
+.main-title {
+  font-family: 'Cinzel', serif; font-size: clamp(26px,6vw,44px);
+  font-weight: 600; color: #f9e8d2; line-height: 1.2;
+  text-shadow: 0 0 40px rgba(200,150,90,.4);
+}
+.name-highlight {
+  font-family: 'Cormorant Garamond', serif; font-size: clamp(38px,9vw,64px);
+  font-weight: 300; font-style: italic; color: #e8b07a;
+  display: block; line-height: 1.1; margin-top: 4px;
+}
+
+/* ── Divider ── */
+.divider { display: flex; align-items: center; gap: 16px; margin: 20px 0 32px; width: 100%; max-width: 400px; }
+.divider-line { flex: 1; height: .5px; background: linear-gradient(to right,transparent,#c8965a80,transparent); }
+.divider-icon { color: #c8965a; font-size: 20px; }
+
+/* ── Message ── */
+.message-card {
+  background: rgba(255,255,255,.04); border: .5px solid rgba(200,150,90,.25);
+  border-radius: 16px; padding: 36px 40px; text-align: center;
+  margin-bottom: 40px; width: 100%; position: relative; overflow: hidden;
+}
+.message-card::before {
+  content: '"'; position: absolute; top: 12px; left: 24px;
+  font-family: 'Cormorant Garamond', serif; font-size: 80px; font-style: italic;
+  color: rgba(200,150,90,.15); line-height: 1;
+}
+.message-text {
+  font-size: clamp(17px,3vw,22px); font-weight: 300; font-style: italic;
+  line-height: 1.85; color: #f0dcc8; position: relative; z-index: 1;
+}
+.message-text em { color: #e8b07a; font-style: normal; }
+
+/* ── Gallery ── */
+.section-label {
+  font-family: 'Cinzel', serif; font-size: 10px; letter-spacing: 4px;
+  color: #c8965a; text-transform: uppercase; text-align: center;
+  margin-bottom: 20px; display: block;
+}
+.gallery-section { width: 100%; margin-bottom: 40px; }
+.gallery-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 10px; }
+.gallery-item {
+  aspect-ratio: 1; border-radius: 10px; border: .5px solid rgba(200,150,90,.2);
+  overflow: hidden; position: relative; cursor: pointer;
+  background: rgba(255,255,255,.03); transition: transform .3s, border-color .3s;
+}
+.gallery-item:hover { transform: scale(1.03); border-color: rgba(200,150,90,.5); }
+.gallery-item.span2 { grid-column: span 2; aspect-ratio: 2/1; }
+.gallery-placeholder {
+  width: 100%; height: 100%; display: flex; flex-direction: column;
+  align-items: center; justify-content: center; gap: 8px;
+  color: rgba(200,150,90,.4); pointer-events: none;
+}
+.gallery-placeholder .ph-icon { font-size: 28px; }
+.gallery-placeholder .ph-text { font-size: 11px; letter-spacing: 1px; color: rgba(200,150,90,.35); font-style: italic; }
+.gallery-item input[type=file] { position: absolute; inset: 0; opacity: 0; cursor: pointer; width: 100%; height: 100%; }
+.gallery-item img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+
+/* ── Music ── */
+.music-section { width: 100%; margin-bottom: 40px; }
+.music-player {
+  background: rgba(255,255,255,.04); border: .5px solid rgba(200,150,90,.2);
+  border-radius: 14px; padding: 20px 28px; display: flex; align-items: center; gap: 20px;
+}
+.play-btn {
+  width: 52px; height: 52px; border-radius: 50%;
+  border: 1px solid rgba(200,150,90,.5); background: transparent;
+  color: #c8965a; font-size: 20px; cursor: pointer;
+  display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+  transition: background .2s, transform .2s;
+}
+.play-btn:hover { background: rgba(200,150,90,.12); transform: scale(1.05); }
+.music-info { flex: 1; min-width: 0; }
+.music-title { font-family: 'Cormorant Garamond', serif; font-size: 17px; font-style: italic; color: #f0dcc8; margin-bottom: 4px; }
+.music-artist { font-size: 12px; letter-spacing: 2px; color: rgba(200,150,90,.6); text-transform: uppercase; }
+.progress-bar { width: 100%; height: 2px; background: rgba(200,150,90,.15); border-radius: 2px; margin-top: 12px; }
+.progress-fill { height: 100%; background: #c8965a; border-radius: 2px; width: 0%; transition: width .5s linear; }
+.music-upload-label {
+  display: flex; align-items: center; gap: 8px;
+  color: rgba(200,150,90,.5); font-size: 13px; font-style: italic;
+  margin-top: 10px; justify-content: center; cursor: pointer;
+}
+.music-upload-label input[type=file] { display: none; }
+.music-hint { font-size: 11px; color: rgba(200,150,90,.35); font-style: italic; text-align: center; margin-top: 6px; }
+
+.bottom-ornament { margin-top: 20px; text-align: center; color: rgba(200,150,90,.45); font-size: 24px; letter-spacing: 12px; }
+
+/* ── Toast ── */
+.toast {
+  position: fixed; bottom: 80px; left: 50%; transform: translateX(-50%) translateY(20px);
+  background: rgba(30,18,10,.95); border: .5px solid rgba(200,150,90,.4);
+  color: #e8b07a; font-family: 'Cormorant Garamond', serif; font-style: italic;
+  font-size: 15px; padding: 12px 28px; border-radius: 30px;
+  opacity: 0; transition: opacity .3s, transform .3s; pointer-events: none; z-index: 300;
+  white-space: nowrap;
+}
+.toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+.toast.error { border-color: rgba(220,80,80,.5); color: #f08080; }
+
+/* ── FAB ── */
+.edit-fab {
+  position: fixed; bottom: 24px; right: 24px;
+  background: rgba(200,150,90,.15); border: .5px solid rgba(200,150,90,.4);
+  border-radius: 30px; color: #c8965a; font-family: 'Cormorant Garamond', serif;
+  font-size: 15px; font-style: italic; padding: 11px 22px; cursor: pointer;
+  z-index: 100; transition: background .2s; display: flex; align-items: center; gap: 8px;
+}
+.edit-fab:hover { background: rgba(200,150,90,.28); }
+
+/* ── Modal ── */
+.modal-overlay {
+  position: fixed; inset: 0; background: rgba(13,8,16,.93);
+  z-index: 200; display: none; align-items: center; justify-content: center; padding: 24px;
+}
+.modal-overlay.open { display: flex; }
+.modal-box { background: #1a1020; border: .5px solid rgba(200,150,90,.3); border-radius: 16px; padding: 36px; width: 100%; max-width: 480px; }
+.modal-title { font-family: 'Cinzel', serif; font-size: 16px; color: #e8b07a; letter-spacing: 2px; margin-bottom: 24px; }
+.modal-label { font-size: 11px; letter-spacing: 2px; color: rgba(200,150,90,.6); text-transform: uppercase; margin-bottom: 6px; display: block; }
+.modal-input, .modal-textarea {
+  width: 100%; background: rgba(255,255,255,.04); border: .5px solid rgba(200,150,90,.2);
+  border-radius: 8px; padding: 10px 14px; color: #f0dcc8;
+  font-family: 'Cormorant Garamond', serif; font-size: 16px;
+  margin-bottom: 18px; outline: none; transition: border-color .2s;
+}
+.modal-input:focus, .modal-textarea:focus { border-color: rgba(200,150,90,.5); }
+.modal-textarea { min-height: 130px; resize: vertical; line-height: 1.6; }
+.modal-actions { display: flex; gap: 12px; margin-top: 4px; }
+.btn-save {
+  flex: 1; padding: 12px; background: rgba(200,150,90,.2);
+  border: .5px solid rgba(200,150,90,.5); border-radius: 8px; color: #e8b07a;
+  font-family: 'Cormorant Garamond', serif; font-size: 15px; font-style: italic;
+  cursor: pointer; transition: background .2s;
+}
+.btn-save:hover { background: rgba(200,150,90,.35); }
+.btn-cancel {
+  padding: 12px 20px; background: transparent; border: .5px solid rgba(255,255,255,.1);
+  border-radius: 8px; color: rgba(255,255,255,.3);
+  font-family: 'Cormorant Garamond', serif; font-size: 15px; cursor: pointer;
+}
+
+/* ── Upload overlay ── */
+.upload-overlay {
+  position: fixed; inset: 0; background: rgba(13,8,16,.85);
+  z-index: 400; display: none; align-items: center; justify-content: center;
+}
+.upload-overlay.open { display: flex; }
+.upload-box {
+  display: flex; flex-direction: column; align-items: center; gap: 16px;
+  background: #1a1020; border: .5px solid rgba(200,150,90,.3);
+  border-radius: 16px; padding: 40px 60px;
+}
+.upload-spinner {
+  width: 40px; height: 40px; border-radius: 50%;
+  border: 2px solid rgba(200,150,90,.2); border-top-color: #c8965a;
+  animation: spin 0.9s linear infinite;
+}
+.upload-text { font-size: 15px; font-style: italic; color: rgba(200,150,90,.8); letter-spacing: 1px; }
+
+@media (max-width: 480px) {
+  .message-card { padding: 28px 24px; }
+  .music-player { padding: 16px 18px; gap: 14px; }
+  .toast { font-size: 13px; padding: 10px 20px; white-space: normal; text-align: center; max-width: 80vw; }
+}

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday, My Little Princess 🌹</title>
+<link rel="stylesheet" href="style.css">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Cinzel:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<div class="stars-bg" id="starsBg"></div>
+<div class="petals-bg" id="petalsBg"></div>
+
+<!-- Loading overlay -->
+<div class="loading-overlay" id="loadingOverlay">
+  <div class="loading-spinner"></div>
+  <p class="loading-text">Memuat kenangan...</p>
+</div>
+
+<div class="page">
+  <div class="top-ornament anim-1">✦ ✦ ✦</div>
+
+  <div class="title-block anim-2">
+    <span class="subtitle-label">Happy Birthday</span>
+    <h1 class="main-title">
+      To My
+      <span class="name-highlight" id="displayName">My Little Princess</span>
+    </h1>
+  </div>
+
+  <div class="divider anim-3">
+    <div class="divider-line"></div>
+    <span class="divider-icon">🌹</span>
+    <div class="divider-line"></div>
+  </div>
+
+  <div class="message-card anim-4">
+    <p class="message-text" id="displayMessage">
+      Hari ini seluruh bintang di langit bersinar lebih terang,<br>
+      hanya untukmu — <em>cintaku, kebahagiaanku</em>.<br><br>
+      Kamu bukan sekadar hadiah dalam hidupku,<br>
+      kamu adalah alasan aku tersenyum setiap pagi.<br><br>
+      Selamat ulang tahun, Sayang. 🌹<br>
+      Semoga hari ini seindah dirimu.
+    </p>
+  </div>
+
+  <!-- Gallery -->
+  <div class="gallery-section anim-5">
+    <span class="section-label">✦ Our Memories ✦</span>
+    <div class="gallery-grid" id="galleryGrid">
+      <div class="gallery-item span2" id="gItem0">
+        <div class="gallery-placeholder"><span class="ph-icon">🖼</span><span class="ph-text">klik untuk upload foto utama</span></div>
+        <input type="file" accept="image/*" onchange="uploadImage(this, 0)">
+      </div>
+      <div class="gallery-item" id="gItem1">
+        <div class="gallery-placeholder"><span class="ph-icon">📷</span><span class="ph-text">foto 2</span></div>
+        <input type="file" accept="image/*" onchange="uploadImage(this, 1)">
+      </div>
+      <div class="gallery-item" id="gItem2">
+        <div class="gallery-placeholder"><span class="ph-icon">📷</span><span class="ph-text">foto 3</span></div>
+        <input type="file" accept="image/*" onchange="uploadImage(this, 2)">
+      </div>
+      <div class="gallery-item" id="gItem3">
+        <div class="gallery-placeholder"><span class="ph-icon">📷</span><span class="ph-text">foto 4</span></div>
+        <input type="file" accept="image/*" onchange="uploadImage(this, 3)">
+      </div>
+      <div class="gallery-item" id="gItem4">
+        <div class="gallery-placeholder"><span class="ph-icon">📷</span><span class="ph-text">foto 5</span></div>
+        <input type="file" accept="image/*" onchange="uploadImage(this, 4)">
+      </div>
+    </div>
+  </div>
+
+  <!-- Music -->
+  <div class="music-section anim-6">
+    <span class="section-label">✦ Our Song ✦</span>
+    <div class="music-player">
+      <button class="play-btn" id="playBtn" onclick="togglePlay()">▶</button>
+      <div class="music-info">
+        <div class="music-title" id="songTitle">Pilih lagu untuknya...</div>
+        <div class="music-artist" id="songArtist">♪ klik upload di bawah</div>
+        <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+      </div>
+    </div>
+    <label class="music-upload-label">
+      <span>🎵</span><span>Upload lagu (MP3 / M4A / WAV)</span>
+      <input type="file" accept="audio/*" onchange="uploadMusic(this)">
+    </label>
+    <p class="music-hint">Pilih lagu favorit kalian berdua ✦</p>
+  </div>
+
+  <div class="bottom-ornament anim-7">🌹 ✦ 🌹</div>
+</div>
+
+<!-- Toast notification -->
+<div class="toast" id="toast"></div>
+
+<!-- Edit FAB -->
+<button class="edit-fab" onclick="openModal()">✏ Edit Pesan</button>
+
+<!-- Edit Modal -->
+<div class="modal-overlay" id="editModal">
+  <div class="modal-box">
+    <div class="modal-title">Personalisasi Website</div>
+    <label class="modal-label">Nama Pasanganmu</label>
+    <input class="modal-input" id="inputName" type="text" placeholder="Nama pasanganmu...">
+    <label class="modal-label">Pesan Cinta</label>
+    <textarea class="modal-textarea" id="inputMessage"></textarea>
+    <div class="modal-actions">
+      <button class="btn-cancel" onclick="closeModal()">Batal</button>
+      <button class="btn-save" onclick="saveEdits()">
+        <span id="saveLabel">Simpan ✦</span>
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- Upload progress overlay -->
+<div class="upload-overlay" id="uploadOverlay">
+  <div class="upload-box">
+    <div class="upload-spinner"></div>
+    <p class="upload-text" id="uploadText">Mengupload...</p>
+  </div>
+</div>
+
+<script src="config.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
