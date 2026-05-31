@@ -1,5 +1,5 @@
 // ── Supabase client ──────────────────────────────────
-const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+const SUPABASE_URL = 'https://zokhradghyebmfdwnixq.supabase.co';
 
 // ── Stars ────────────────────────────────────────────
 const starsBg = document.getElementById('starsBg');
