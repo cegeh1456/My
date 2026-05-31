@@ -1,5 +1,8 @@
 // ── Supabase client ──────────────────────────────────
-const SUPABASE_URL = 'https://zokhradghyebmfdwnixq.supabase.co';
+const supabaseClient = window.supabase.createClient(
+  SUPABASE_URL,
+  SUPABASE_ANON_KEY
+);
 
 // ── Stars ────────────────────────────────────────────
 const starsBg = document.getElementById('starsBg');
@@ -33,7 +36,7 @@ function showToast(msg, isError = false) {
 // ── Load all saved content on page load ──────────────
 async function loadContent() {
   try {
-    const { data, error } = await supabase
+    const { data, error } = await supabaseClient
       .from(TABLE_NAME)
       .select('*')
       .eq('id', 1)
@@ -81,7 +84,7 @@ async function saveEdits() {
 
   document.getElementById('saveLabel').textContent = 'Menyimpan...';
 
-  const { error } = await supabase
+  const { error } = await supabaseClient
     .from(TABLE_NAME)
     .upsert({ id: 1, name, message: htmlMsg }, { onConflict: 'id' });
 
@@ -108,7 +111,7 @@ async function uploadImage(input, idx) {
   const ext      = file.name.split('.').pop();
   const fileName = `photo_${idx}_${Date.now()}.${ext}`;
 
-  const { error: uploadError } = await supabase.storage
+  const { error: uploadError } = await supabaseClient.storage
     .from(STORAGE_BUCKET)
     .upload(fileName, file, { upsert: true });
 
@@ -119,14 +122,14 @@ async function uploadImage(input, idx) {
     return;
   }
 
-  const { data: urlData } = supabase.storage
+  const { data: urlData } = supabaseClient.storage
     .from(STORAGE_BUCKET)
     .getPublicUrl(fileName);
 
   const publicUrl = urlData.publicUrl;
 
   // Update DB: get current photos array then patch slot idx
-  const { data: row } = await supabase
+  const { data: row } = await supabaseClient
     .from(TABLE_NAME)
     .select('photos')
     .eq('id', 1)
@@ -135,7 +138,7 @@ async function uploadImage(input, idx) {
   const photos = row?.photos || Array(5).fill(null);
   photos[idx]  = publicUrl;
 
-  await supabase
+  await supabaseClient
     .from(TABLE_NAME)
     .upsert({ id: 1, photos }, { onConflict: 'id' });
 
@@ -169,7 +172,7 @@ async function uploadMusic(input) {
   const fileName = `music_${Date.now()}.${ext}`;
   const songName = file.name.replace(/\.[^/.]+$/, '');
 
-  const { error: uploadError } = await supabase.storage
+  const { error: uploadError } = await supabaseClient.storage
     .from(STORAGE_BUCKET)
     .upload(fileName, file, { upsert: true });
 
@@ -180,13 +183,13 @@ async function uploadMusic(input) {
     return;
   }
 
-  const { data: urlData } = supabase.storage
+  const { data: urlData } = supabaseClient.storage
     .from(STORAGE_BUCKET)
     .getPublicUrl(fileName);
 
   const publicUrl = urlData.publicUrl;
 
-  await supabase
+  await supabaseClient
     .from(TABLE_NAME)
     .upsert({ id: 1, music_url: publicUrl, music_name: songName }, { onConflict: 'id' });
 
